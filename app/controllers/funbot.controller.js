@@ -4,6 +4,11 @@ const config = require('../../config.js');
 
 exports.update = async (req, res) => {
     const payload = req.body;
+    if(!payload.message) {
+        res.status(200).send({
+            message: 'Nothing happened',
+        });
+    }
     const message = payload.message;
     if(message.text.endsWith("$line")) {
         const quote = await quotes.getRandomQuote();
