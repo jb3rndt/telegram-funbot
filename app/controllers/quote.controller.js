@@ -37,7 +37,8 @@ exports.fetch = async (req, res) => {
         });
     });
     res.send({
-        message: 'Everything worked as expected and got saved into the Database. Here is the proof: ' + JSON.stringify(await this.getRandomQuote()),
+        message: 'Everything worked as expected and got saved into the Database. Here is the proof: ',
+        quote: await this.getRandomQuote(),
     });
 };
 
