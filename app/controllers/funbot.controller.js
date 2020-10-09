@@ -26,6 +26,7 @@ exports.update = async (req, res) => {
             });
             result += ' ';
         });
+        await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=${message.chat.id}&text=${result}`));
         res.status(200).send({
             message: result,
         });
