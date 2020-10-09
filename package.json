@@ -4,7 +4,8 @@
   "description": "This is a RESTful API for a Telegram Bot that can do some funny things",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [
     "Express",
@@ -19,6 +20,10 @@
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "mongoose": "^5.10.9",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "pg": "^8.4.1"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
