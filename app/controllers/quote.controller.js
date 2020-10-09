@@ -47,6 +47,5 @@ exports.getRandomQuote = async () => {
     const count = await (await pool.query('SELECT count(*) FROM quotes')).rows[0].count;
     const random = Math.floor(Math.random() * count);
     const quote = await (await pool.query('SELECT * FROM quotes')).rows[random];
-    console.log(quote);
     return quote;
 }
