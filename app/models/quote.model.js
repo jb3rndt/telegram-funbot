@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const QuoteSchema = mongoose.Schema({
     quote: String,
     author: String,
+    title: String,
     album: String,
 })
 
