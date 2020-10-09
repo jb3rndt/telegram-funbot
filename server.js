@@ -46,6 +46,6 @@ app.get('/', (req, res) => {
 
 require('./app/routes/funbot.routes.js')(app);
 
-app.listen(process.env.PORT, () => {
-    console.log('Server is listening on port 3000');
+app.listen(config.port, () => {
+    console.log('Server is listening on port ' + config.port);
 })

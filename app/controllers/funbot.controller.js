@@ -7,7 +7,7 @@ exports.update = async (req, res) => {
     const message = payload.result.message;
     if(message.text.endsWith("$line")) {
         const quote = await quotes.getRandomQuote();
-        await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=-408132614&text="${quote.quote}"\n ~ ${quote.author} (${quote.title})\nAlbum: ${quote.album}`));
+        await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=${message.chat.id}&text="${quote.quote}"\n ~ ${quote.author} (${quote.title})\nAlbum: ${quote.album}`));
         res.status(200).send({
             message: 'Sent line, have fun with it',
         });
