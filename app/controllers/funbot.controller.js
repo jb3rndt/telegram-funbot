@@ -11,8 +11,14 @@ exports.update = async (req, res) => {
     }
     const message = payload.message;
     if(message.text.endsWith("$line")) {
-        const quote = await quotes.getRandomQuote();
-        await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=${message.chat.id}&text="${quote.quote}"\n ~ ${quote.author} (${quote.song})\nAlbum: ${quote.album}`));
+        const quote = await quotes.getRandomQuote().catch((err) => err.message);
+        try {
+            await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=${message.chat.id}&text="${quote.quote}"\n ~ ${quote.author} (${quote.song})\nAlbum: ${quote.album}`));
+        } catch(err) {
+            res.status(500).send({
+                message: 'Something went wrong when sending the message. ' + err.message,
+            });
+        }
         res.status(200).send({
             message: 'Sent line, have fun with it',
         });
@@ -31,7 +37,13 @@ exports.update = async (req, res) => {
             });
             result += ' ';
         });
-        await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=${message.chat.id}&text=${result}`));
+        try {
+            await fetch(encodeURI(`https://api.telegram.org/bot${config.bottoken}/sendmessage?chat_id=${message.chat.id}&text=${result}`));
+        } catch(err) {
+            res.status(500).send({
+                message: 'Something went wrong when sending the message. ' + err.message,
+            });
+        }
         res.status(200).send({
             message: result,
         });
